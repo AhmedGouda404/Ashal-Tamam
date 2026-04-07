@@ -1,23 +1,17 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "api/sharepoint.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "Public/**",
-      "use": "@vercel/static"
-    }
+    { "src": "sharepoint.js", "use": "@vercel/node" },
+    { "src": "Public/**", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "src": "/api/sharepoint",
-      "dest": "api/sharepoint.js"
+    { 
+      "src": "/api/sharepoint", 
+      "dest": "/sharepoint.js" 
     },
-    {
-      "src": "/(.*)",
-      "dest": "Public/$1"
+    { 
+      "src": "/(.*)", 
+      "dest": "/Public/$1" 
     }
   ]
 }
