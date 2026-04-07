@@ -1,7 +1,23 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/Public/$1" }
+  "builds": [
+    {
+      "src": "api/sharepoint.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "Public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/sharepoint",
+      "dest": "api/sharepoint.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "Public/$1"
+    }
   ]
 }
