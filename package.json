@@ -1,1 +1,10 @@
-
+{
+  "name": "ashal-tamam",
+  "version": "1.0.0",
+  "description": "SharePoint API Integration",
+  "main": "api/sharepoint.js",
+  "dependencies": {},
+  "engines": {
+    "node": "18.x"
+  }
+}
