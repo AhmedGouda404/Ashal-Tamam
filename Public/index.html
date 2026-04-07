@@ -20,35 +20,22 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
 
-/* LOGIN PAGE */
 .login-page{width:100%;max-width:900px;min-height:500px;background:var(--surface);border-radius:20px;overflow:hidden;display:flex;box-shadow:0 20px 60px rgba(46,125,50,.15);}
 .login-left{width:40%;background:var(--green-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 30px;position:relative;overflow:hidden;}
-.login-left::before{content:'';position:absolute;top:-60px;left:-60px;width:200px;height:200px;background:rgba(255,255,255,.05);border-radius:50%;}
-.login-left::after{content:'';position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;background:rgba(255,255,255,.05);border-radius:50%;}
-.login-illustration{width:160px;opacity:.9;}
 .login-right{flex:1;padding:48px 40px;display:flex;flex-direction:column;justify-content:center;}
 .tamam-logo{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .tamam-logo-text{font-size:32px;font-weight:700;color:var(--green-dark);letter-spacing:-1px;}
 .tamam-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
 .login-subtitle{font-size:13px;color:var(--text2);margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border);}
-.login-system{font-size:16px;font-weight:600;color:var(--green-dark);margin-bottom:24px;}
 .lg{margin-bottom:14px;}
 .ll{font-size:11px;color:var(--text2);margin-bottom:5px;font-weight:500;}
-.li{width:100%;padding:10px 14px;font-size:14px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-family:inherit;transition:border-color .15s;}
+.li{width:100%;padding:10px 14px;font-size:14px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-family:inherit;}
 .li:focus{outline:none;border-color:var(--green);}
-.li.err{border-color:var(--red);}
-.pw-wrap{position:relative;}
-.pw-wrap .li{padding-right:40px;}
-.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--text3);font-size:16px;background:none;border:none;}
-.remember{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);margin-bottom:20px;cursor:pointer;}
-.remember input{accent-color:var(--green);}
-.login-btn{width:100%;padding:12px;background:var(--green-dark);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;letter-spacing:.3px;}
+.login-btn{width:100%;padding:12px;background:var(--green-dark);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;margin-top:10px;}
 .login-btn:hover{background:var(--green-mid);}
-.login-btn:active{transform:scale(.99);}
-.err-msg{font-size:12px;color:var(--red);margin-top:8px;display:none;}
+.err-msg{background:#FFF3E0;border:1px solid #FFB74D;border-radius:var(--radius);padding:10px;font-size:12px;color:#E65100;margin-top:10px;display:none;}
 .err-msg.show{display:block;}
 
-/* APP STYLES (Simplified for brevity, same as yours) */
 .app-wrap{width:100%;max-width:480px;display:none;flex-direction:column;}
 .phone{background:var(--surface);border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(46,125,50,.12);display:flex;flex-direction:column;min-height:700px;}
 .topbar{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--green-dark);color:#fff;}
@@ -64,10 +51,8 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100v
 .bp{background:var(--amber-bg);color:var(--amber-text);}
 .br{background:var(--red-bg);color:var(--red-text);}
 .nav{display:flex;border-top:1px solid var(--border);padding:10px;}
-.nb{flex:1;background:none;border:none;font-size:10px;color:var(--text2);cursor:pointer;}
+.nb{flex:1;background:none;border:none;font-size:10px;color:var(--text2);cursor:pointer;padding:10px;}
 .nb.on{color:var(--green-dark);font-weight:600;}
-.api-error{background:#FFF3E0;border:1px solid #FFB74D;border-radius:var(--radius);padding:10px;font-size:12px;color:#E65100;margin-top:10px;display:none;}
-.api-error.show{display:block;}
 </style>
 </head>
 <body>
@@ -82,15 +67,17 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100v
   <div class="login-right">
     <div class="tamam-logo"><div class="tamam-logo-text">تمام</div><div class="tamam-logo-dot"></div></div>
     <div class="login-subtitle">Ashal Holding — Sales System</div>
+    
     <div class="lg">
       <label class="ll">Username</label>
-      <input class="li" id="ln" placeholder="Username">
+      <input class="li" id="ln" placeholder="AS2026">
     </div>
     <div class="lg">
       <label class="ll">Password</label>
-      <input class="li" id="lp" type="password" placeholder="Password">
+      <input class="li" id="lp" type="password" placeholder="1234">
     </div>
-    <div class="api-error" id="login-err"></div>
+    
+    <div class="err-msg" id="login-err"></div>
     <button class="login-btn" onclick="doLogin()" id="login-btn">Login</button>
   </div>
 </div>
@@ -102,7 +89,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100v
       <button class="logout-btn" onclick="location.reload()">Logout</button>
     </div>
     <div id="sc-list" class="screen on"><div class="scroll" id="list-body"></div></div>
-    <div id="sc-dash" class="screen"><div class="scroll" id="dash-body">Dashboard Content</div></div>
+    <div id="sc-dash" class="screen"><div class="scroll" id="dash-body">Dashboard Area</div></div>
     <div class="nav" id="main-nav">
       <button class="nb on" onclick="showScreen('sc-list')">Clients</button>
       <button class="nb" onclick="showScreen('sc-dash')">Dashboard</button>
@@ -111,18 +98,15 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100v
 </div>
 
 <script>
-// ===================== CONFIG =====================
 const CONFIG = {
   usersListName: 'DF Users',
   clientsListName: 'Sales_Clients'
 };
 
 let currentUser = null;
-let currentRole = null;
 let allClients = [];
 
-// ===================== API PROXY (VERCEL) =====================
-// دي الدالة الوحيدة اللي بتكلم السيرفر
+// الاتصال المباشر بـ Vercel Serverless Function
 async function callApi(action, list, item = null, filter = null, id = null) {
   try {
     const res = await fetch('/api/sharepoint', {
@@ -130,14 +114,15 @@ async function callApi(action, list, item = null, filter = null, id = null) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action, list, item, filter, id })
     });
+    
+    if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
     return await res.json();
   } catch (e) {
-    console.error("API Call Error:", e);
+    console.error("API Error:", e);
     return { ok: false, error: e.message };
   }
 }
 
-// ===================== LOGIN =====================
 async function doLogin() {
   const username = document.getElementById('ln').value.trim();
   const password = document.getElementById('lp').value.trim();
@@ -145,39 +130,36 @@ async function doLogin() {
   const errEl = document.getElementById('login-err');
 
   if (!username || !password) {
-    errEl.textContent = "Please fill all fields";
+    errEl.textContent = "Please enter username and password.";
     errEl.classList.add('show');
     return;
   }
 
-  btn.textContent = 'Checking...';
+  btn.textContent = 'Authenticating...';
   btn.disabled = true;
   errEl.classList.remove('show');
 
-  // بننادي الـ API بتاعنا ونطلب منه يعمل "get" من جدول اليوزرز
   const res = await callApi('get', CONFIG.usersListName, null, `UserName eq '${username}' and Password eq '${password}'`);
 
   if (res.ok && res.data && res.data.length > 0) {
     const u = res.data[0];
     currentUser = u.SalesName || u.UserName;
-    currentRole = (u.Role || '').toLowerCase();
     
     document.getElementById('login-page').style.display = 'none';
     document.getElementById('app-wrap').style.display = 'flex';
     document.getElementById('av').textContent = currentUser.charAt(0);
     loadClients();
   } else {
-    errEl.textContent = "Invalid username or password";
+    errEl.textContent = res.error ? `Server Error: ${res.error}` : "Invalid username or password!";
     errEl.classList.add('show');
     btn.textContent = 'Login';
     btn.disabled = false;
   }
 }
 
-// ===================== CLIENTS =====================
 async function loadClients() {
   const listBody = document.getElementById('list-body');
-  listBody.innerHTML = "Loading...";
+  listBody.innerHTML = "<div style='text-align:center; padding:20px; color:#666;'>Loading clients...</div>";
 
   const res = await callApi('get', CONFIG.clientsListName);
 
@@ -185,25 +167,30 @@ async function loadClients() {
     allClients = res.data;
     renderList();
   } else {
-    listBody.innerHTML = "Error loading clients.";
+    listBody.innerHTML = `<div style='color:red;'>Failed to load data: ${res.error}</div>`;
   }
 }
 
 function renderList() {
   const listBody = document.getElementById('list-body');
+  if (allClients.length === 0) {
+    listBody.innerHTML = "<div style='text-align:center; color:#888;'>No clients found.</div>";
+    return;
+  }
+  
   let html = '';
   allClients.forEach(c => {
     const statusClass = c.Status === 'Approved' ? 'ba' : c.Status === 'Rejected' ? 'br' : 'bp';
     html += `
       <div class="card">
         <div style="display:flex; justify-content:space-between;">
-          <b>${c.CustomerName || 'No Name'}</b>
+          <b>${c.CustomerName || c.Title || 'Unnamed Client'}</b>
           <span class="badge ${statusClass}">${c.Status || 'Pending'}</span>
         </div>
-        <div style="font-size:12px; color:#666; margin-top:5px;">${c.Program || ''}</div>
+        <div style="font-size:12px; color:#666; margin-top:5px;">Program: ${c.Program || 'N/A'}</div>
       </div>`;
   });
-  listBody.innerHTML = html || "No clients found.";
+  listBody.innerHTML = html;
 }
 
 function showScreen(id) {
